@@ -1,5 +1,5 @@
-const CACHE='fruit-dojo-v4';
-const CORE=['./','./index.html','./styles.css','./game.js','./icon.svg','./manifest.webmanifest','./assets/background.webp','./assets/splats.webp','./assets/slice.wav','./assets/bomb.wav','./assets/combo.wav','./assets/launch.wav'];
+const CACHE='fruit-dojo-v5';
+const CORE=['./','./index.html','./styles.css','./game.js','./icon.svg','./manifest.webmanifest','./assets/background.webp','./assets/splats.webp','./assets/slice.wav','./assets/bomb.wav','./assets/combo.wav','./assets/launch.wav','./assets/swipe1.wav','./assets/swipe2.wav','./assets/swipe3.wav','./assets/crunch.wav','./assets/juicy.wav'];
 CORE.push(...['watermelon','orange','apple','kiwi','lemon','peach'].flatMap(name=>['','-half1','-half2'].map(part=>`./assets/fruits/${name}${part}.webp`)));
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting();});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('fruit-dojo-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});

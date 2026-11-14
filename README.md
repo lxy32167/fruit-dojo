@@ -40,7 +40,7 @@ python3 serve.py
 
 ## 素材来源
 
-`dist/assets/background.webp` 来自 APKM 中的 `Dojo_Basic`；`splats.webp` 来自 `FruitSplats`；四个 WAV 分别来自 `FruitImpactSplatter01`、`BombExplode`、`UICombo3Fruit` 和 `BombLaunch`。原始解析记录保存在上级 `reference/fruit-ninja-3.39.3/`，不随网站发布。素材原有权利归属不变，本项目不授予其再分发或商业使用许可。六种水果的完整外观和切开后的果肉均使用 APK 原始 Mesh + FruitAtlas 材质渲染成透明 WebP，位于 `dist/assets/fruits/`，不再使用程序绘制的水果。模型与材质来源记录见该目录的 `sources.json`；离线渲染脚本位于 `tools/render-fruit-assets.py`。刀光、图标与界面为本项目实现。
+`dist/assets/background.webp` 来自 APKM 中的 `Dojo_Basic`；`splats.webp` 来自 `FruitSplats`；基础四个 WAV 分别来自 `FruitImpactSplatter01`、`BombExplode`、`UICombo3Fruit` 和 `BombLaunch`。挥刀使用 `BladeRegularSwipe04/05/06` 三个随机变体，苹果切开使用 `FruitImpactMediumCrunchy02`，西瓜和桃子使用 `FruitImpactBigWet01`。完整音频来源见 `dist/assets/audio-sources.json`。原始解析记录保存在上级 `reference/fruit-ninja-3.39.3/`，不随网站发布。素材原有权利归属不变，本项目不授予其再分发或商业使用许可。六种水果的完整外观和切开后的果肉均使用 APK 原始 Mesh + FruitAtlas 材质渲染成透明 WebP，位于 `dist/assets/fruits/`，不再使用程序绘制的水果。模型与材质来源记录见该目录的 `sources.json`；离线渲染脚本位于 `tools/render-fruit-assets.py`。刀光、图标与界面为本项目实现。
 
 ## 验证
 

@@ -1,0 +1,56 @@
+[
+  {
+    "file": "swipe3.wav",
+    "name": "BladeRegularSwipe06",
+    "source_file": "6f8d88f56904c9c4fb138a3be0beb8f9",
+    "id": 1
+  },
+  {
+    "file": "swipe2.wav",
+    "name": "BladeRegularSwipe05",
+    "source_file": "7983c42437907a84ab1a807a46937122",
+    "id": 1
+  },
+  {
+    "file": "swipe1.wav",
+    "name": "BladeRegularSwipe04",
+    "source_file": "946c6b849d3fb194c90301122aaa6a6a",
+    "id": 1
+  },
+  {
+    "file": "juicy.wav",
+    "name": "FruitImpactBigWet01",
+    "source_file": "7aa6232629180784392cc1da04ce4f06",
+    "id": 1
+  },
+  {
+    "file": "crunch.wav",
+    "name": "FruitImpactMediumCrunchy02",
+    "source_file": "3e5b75a2b135d5048924658a1efd91a6",
+    "id": 1
+  },
+  {
+    "file": "slice.wav",
+    "name": "FruitImpactSplatter01",
+    "source_file": "ddc12ce848faf2d4db46f273cb35eb6f",
+    "id": 1
+  },
+  {
+    "file": "launch.wav",
+    "name": "BombLaunch",
+    "source_file": "8f67f387de169fd4a8bf119bc3ff70e4",
+    "id": 1
+  },
+  {
+    "file": "bomb.wav",
+    "name": "BombExplode",
+    "source_file": "f8378c33e5fbea94e8c63c4a85767962",
+    "id": 1
+  },
+  {
+    "file": "combo.wav",
+    "name": "UICombo3Fruit",
+    "source_file": "7739a71085dd4824b8e95cc21f936b35",
+    "id": 1
+  }
+]

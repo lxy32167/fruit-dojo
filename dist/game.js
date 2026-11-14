@@ -43,7 +43,7 @@ splatAtlas.onload = () => {
  }
 };
 splatAtlas.src = 'assets/splats.webp';
-const audioFiles = { slice:'slice.wav', bomb:'bomb.wav', combo:'combo.wav', launch:'launch.wav' };
+const audioFiles = { slice:'slice.wav', bomb:'bomb.wav', combo:'combo.wav', launch:'launch.wav', swipe1:'swipe1.wav', swipe2:'swipe2.wav', swipe3:'swipe3.wav', crunch:'crunch.wav', juicy:'juicy.wav' };
 const soundBuffers = new Map(); let audioLoading = false;
 function loadAudio() {
  if(audioLoading || !audioCtx)return; audioLoading = true;
@@ -140,7 +140,7 @@ function slice(f, angle, stroke) {
  for(const side of [-1,1]) pieces.push({...f,dead:false,x:f.x+nx*side*4,y:f.y+ny*side*4,vx:f.vx+nx*side*150,vy:f.vy*.25+ny*side*130-70,spin:side*rnd(1.6,3.8),side,cut:angle-f.angle,life:1.4});
  for(let i=0;i<23;i++) particles.push({x:f.x,y:f.y,vx:rnd(-260,260),vy:rnd(-280,150),r:rnd(2,7),life:rnd(.3,.8),max:.8,color:f.type.color});
  splats.push({x:f.x,y:f.y,r:rnd(20,40),color:f.type.color,life:7,angle:rnd(0,TAU)});if(splats.length>36)splats.shift();
- if(!sample('slice',.35)){noise(.1,.16,1700);tone(rnd(470,800),.075,'sine',.05,200);}updateHud();
+ if(!sample(f.type===types[2]?'crunch':f.type===types[0]||f.type===types[5]?'juicy':'slice',.38)){noise(.1,.16,1700);tone(rnd(470,800),.075,'sine',.05,200);}updateHud();
 }
 function finishStroke(stroke) {
  if(stroke.hits>=3) { const bonus=stroke.hits;score+=bonus;topCombo=Math.max(topCombo,stroke.hits);labels.push({x:clamp(stroke.x,130,870),y:clamp(stroke.y-70,140,H-150),text:`${stroke.hits} 连击  +${bonus}`,color:'#ffd175',life:1.1,max:1.1,size:38});if(!sample('combo',.4))tone(660,.2,'triangle',.09,990);updateHud(); }
@@ -160,7 +160,7 @@ canvas.addEventListener('pointermove',e=>{
   // Line-segment collision catches fast swipes between pointer samples.
   for(const f of fruits) { if(!f.dead && distanceToSegment(f,a,p)<f.r*.9) {slice(f,angle,stroke);if(endDelay>=0)break;} }
   const trail=trails.get(e.pointerId);trail?.push(p);if(trail?.length>45)trail.shift();stroke.previous=p;
-  if(length>15&&clock-lastSwish>.13){noise(.065,.025,3500);lastSwish=clock;}
+  if(length>15&&clock-lastSwish>.13){if(!sample(choose(['swipe1','swipe2','swipe3']),.28))noise(.065,.025,3500);lastSwish=clock;}
   if(endDelay>=0)break;
  }
 });
