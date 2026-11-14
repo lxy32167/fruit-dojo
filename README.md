@@ -2,6 +2,14 @@
 
 用原生 HTML、CSS 和 Canvas 2D 实现的经典切水果小游戏。独立于上级目录的水果合成游戏，无框架、无构建、无运行时 CDN。
 
+## 在线试玩
+
+游戏网址：https://lxy32167.github.io/fruit-dojo/
+
+源码仓库：https://github.com/lxy32167/fruit-dojo
+
+GitHub Actions 将 `main` 分支的 `dist/` 发布到 GitHub Pages。推送后自动更新，iPad 可在 Safari 中打开并添加到主屏幕。
+
 ## 启动
 
 双击 `启动游戏.command`，或者运行：
