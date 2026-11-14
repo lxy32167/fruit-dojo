@@ -38,9 +38,10 @@ let fruitsReady = false, fruitsLoading = false;
 async function loadFruitSprites() {
  if(fruitsLoading)return; fruitsLoading=true; $('start').disabled=true; $('start').firstElementChild.textContent='水果准备中…';
  try {
-  await Promise.all(spriteKeys.map(key=>new Promise((resolve,reject)=>{
-   const image=new Image();image.onload=()=>{fruitSprites.set(key,image);resolve();};image.onerror=reject;image.src=`assets/fruits/${key}.webp`;
-  })));
+  const response=await fetch('assets/fruits/atlas.json');if(!response.ok)throw Error('atlas manifest');
+  const manifest=await response.json();
+  const atlas=await new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=reject;image.src='assets/fruits/atlas.webp';});
+  for(const key of spriteKeys){if(!manifest[key])throw Error('missing sprite');fruitSprites.set(key,{atlas,rect:manifest[key]});}
   fruitsReady=true;$('start').firstElementChild.textContent='开始切水果';
  } catch { $('start').firstElementChild.textContent='重试加载水果';toast('水果素材加载失败，请点击重试'); }
  finally {fruitsLoading=false;$('start').disabled=false;}
@@ -220,14 +221,14 @@ function drawFruit(f, half=false) {
  if(image){
   if(half)ctx.rotate(f.cut);
   ctx.shadowColor='#09070588';ctx.shadowBlur=10;ctx.shadowOffsetY=8;
-  ctx.drawImage(image,-r*1.13,-r*1.13,r*2.26,r*2.26);
+  ctx.drawImage(image.atlas,...image.rect,-r*1.13,-r*1.13,r*2.26,r*2.26);
  }
  ctx.restore();
 }
 function drawBomb(r) {
  const image=fruitSprites.get('bomb');if(!image)return;
  ctx.shadowColor='#09070588';ctx.shadowBlur=10;ctx.shadowOffsetY=8;
- ctx.drawImage(image,-r*1.325,-r*1.65,r*2.65,r*2.65);
+ ctx.drawImage(image.atlas,...image.rect,-r*1.325,-r*1.65,r*2.65,r*2.65);
 }
 function renderHome() {
  const portrait=W/H<1.05;

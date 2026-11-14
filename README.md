@@ -44,7 +44,7 @@ python3 serve.py
 
 ## 素材来源
 
-`dist/assets/background.webp` 来自 APKM 中的 `Dojo_Basic`；`splats.webp` 来自 `FruitSplats`；基础四个 WAV 分别来自 `FruitImpactSplatter01`、`BombExplode`、`UICombo3Fruit` 和 `BombLaunch`。挥刀使用 `BladeRegularSwipe04/05/06` 三个随机变体，苹果切开使用 `FruitImpactMediumCrunchy02`，西瓜和桃子使用 `FruitImpactBigWet01`。完整音频来源见 `dist/assets/audio-sources.json`。原始解析记录保存在上级 `reference/fruit-ninja-3.39.3/`，不随网站发布。素材原有权利归属不变，本项目不授予其再分发或商业使用许可。16 种普通水果的完整外观和切开后的果肉均使用 APK 原始 Mesh + FruitAtlas 材质渲染成透明 WebP，位于 `dist/assets/fruits/`，不再使用程序绘制的水果。模型与材质来源记录见该目录的 `sources.json`；离线渲染脚本位于 `tools/render-fruit-assets.py`。石榴和火龙果的模型、果肉、爆裂碎块，以及红叉炸弹也取自该 APK；来源分别见同目录的 `pomegranate-sources.json`、`dragonfruit-sources.json`、`bomb-sources.json`。全部游戏音频为 APK 原音频，已移除合成音替代。刀光、粒子动画、图标与界面为本项目实现。
+`dist/assets/background.webp` 来自 APKM 中的 `Dojo_Basic`；`splats.webp` 来自 `FruitSplats`；基础四个 WAV 分别来自 `FruitImpactSplatter01`、`BombExplode`、`UICombo3Fruit` 和 `BombLaunch`。挥刀使用 `BladeRegularSwipe04/05/06` 三个随机变体，苹果切开使用 `FruitImpactMediumCrunchy02`，西瓜和桃子使用 `FruitImpactBigWet01`。完整音频来源见 `dist/assets/audio-sources.json`。原始解析记录保存在上级 `reference/fruit-ninja-3.39.3/`，不随网站发布。素材原有权利归属不变，本项目不授予其再分发或商业使用许可。16 种普通水果的完整外观和切开后的果肉均使用 APK 原始 Mesh + FruitAtlas 材质渲染成透明 WebP，位于 `dist/assets/fruits/`，不再使用程序绘制的水果。运行时通过 `atlas.webp` + `atlas.json` 一次加载 61 个精灵，避免几十个图片请求拖慢首次启动；单张导出图仍保留用于来源追溯。模型与材质来源记录见该目录的 `sources.json`；离线渲染脚本位于 `tools/render-fruit-assets.py`。石榴和火龙果的模型、果肉、爆裂碎块，以及红叉炸弹也取自该 APK；来源分别见同目录的 `pomegranate-sources.json`、`dragonfruit-sources.json`、`bomb-sources.json`。全部游戏音频为 APK 原音频，已移除合成音替代。刀光、粒子动画、图标与界面为本项目实现。
 
 ## 验证
 
