@@ -1,0 +1,59 @@
+[
+  {
+    "file": "dragonfruit.webp",
+    "mesh": "DragonWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "DragonWhole",
+      "file": "a45885deffa1a5540ae164c14116418f",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "dragonfruit-half1.webp",
+    "mesh": "DragonHalfTop",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "DragonHalfTop",
+      "file": "a45885deffa1a5540ae164c14116418f",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "dragonfruit-half2.webp",
+    "mesh": "DragonHalfBottom",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "DragonHalfBottom",
+      "file": "a45885deffa1a5540ae164c14116418f",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  }
+]

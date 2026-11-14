@@ -6,9 +6,19 @@ import math,sys,json
 from pathlib import Path
 from PIL import Image,ImageDraw
 src,out=map(Path,sys.argv[1:3]);out.mkdir(parents=True,exist_ok=True)
-texture=Image.open(src/'FruitAtlas.png').convert('RGBA');pixels=texture.load();tw,th=texture.size
+variant=sys.argv[3] if len(sys.argv)>3 else ''
+special=variant=='--pomegranate'
+dragon=variant=='--dragonfruit'
+bomb=variant=='--bomb'
+atlas='Pomegranate' if special else 'BombRedCross' if bomb else 'FruitAtlas'
+texture=Image.open(src/(atlas+'.png')).convert('RGBA');pixels=texture.load();tw,th=texture.size
 SIZE=320
-names={'watermelon':'Watermelon','orange':'Orange','apple':'AppleRed','kiwi':'Kiwifruit','lemon':'Lemon','peach':'Peach'}
+names={'watermelon':'Watermelon','orange':'Orange','apple':'AppleRed','kiwi':'Kiwifruit','lemon':'Lemon','peach':'Peach','mango':'Mango','pineapple':'Pineapple','coconut':'Coconut','strawberry':'Strawberry','greenapple':'AppleGreen','banana':'Banana','lime':'Lime','plum':'Plum','pear':'Pear','passionfruit':'Passionfruit'}
+if special:names={'pomegranate':'pomegranate_'}
+if dragon:names={'dragonfruit':'Dragon'}
+if bomb:names={'bomb':'bomb'}
+only=variant.split('=',1)[1] if variant.startswith('--only=') else None
+if only:names={k:v for k,v in names.items() if k==only}
 def rotate(p,ax,ay):
  x,y,z=p;y,z=y*math.cos(ax)-z*math.sin(ax),y*math.sin(ax)+z*math.cos(ax)
  return x*math.cos(ay)+z*math.sin(ay),y,-x*math.sin(ay)+z*math.cos(ay)
@@ -23,11 +33,11 @@ def read(path):
   elif a[0]=='f':faces.append([tuple(int(i)-1 for i in c.split('/')) for c in a[1:]])
  return v,n,uv,faces
 records=[]
-source_models={r["name"]:r for r in json.loads((src/"meshes"/"source.json").read_text())}
+source_models={r["name"]:r for r in json.loads((src/("pomegranate-sources.json" if special else "special-model-sources.json" if dragon or bomb else "meshes/source.json")).read_text())}
 for slug,name in names.items():
- for part in ['Whole','Half1','Half2']:
+ for part in (['single']+[f'p_piece_{i}' for i in range(1,9)] if special else [''] if bomb else ['Whole','HalfTop','HalfBottom'] if dragon else ['Whole','Half1','Half2']):
   v,n,uv,faces=read(src/'meshes'/(name+part+'.obj'))
-  ax,ay=(-.25,.65) if part=='Whole' else ((.3,-2.25) if part=='Half1' else (-.3,-.9))
+  ax,ay=(-.25,.65) if part in ('Whole','single','') else ((.3,-2.25) if part in ('Half1','HalfTop') else (-.3,-.9))
   v=[rotate(p,ax,ay) for p in v];n=[rotate(p,ax,ay) for p in n]
   mnx,mxx=min(p[0] for p in v),max(p[0] for p in v);mny,mxy=min(p[1] for p in v),max(p[1] for p in v)
   scale=(SIZE-20)/max(mxx-mnx,mxy-mny);cx=(mnx+mxx)/2;cy=(mny+mxy)/2
@@ -51,10 +61,17 @@ for slug,name in names.items():
       nx,ny,nz=[u*norm[0][j]+w*norm[1][j]+t*norm[2][j] for j in range(3)];length=math.sqrt(nx*nx+ny*ny+nz*nz) or 1
       light=max(0,(-nx*.36+ny*.5+nz*.79)/length);shade=.55+.48*light
       dest[x,y]=tuple(min(255,int(ch*shade)) for ch in color[:3])+(color[3],);depth[di]=z
-  filename=slug+('' if part=='Whole' else '-'+part.lower())+'.webp';image.save(out/filename,quality=94)
-  records.append({'file':filename,'mesh':name+part,'atlas':'FruitAtlas','rotation':[ax,ay],'unity_source':source_models[name+part],'atlas_source':{'file':'6809ed30669635b409f67e1f350c4561','id':1,'name':'FruitAtlas'}});print(filename,flush=True)
-(out/'sources.json').write_text(json.dumps(records,ensure_ascii=False,indent=2))
-contact=Image.new('RGB',(6*170,3*190),'#30251c');d=ImageDraw.Draw(contact)
+  filename=slug+('' if part in ('Whole','single','') else ('-half1' if part=='HalfTop' else '-half2') if dragon else '-'+part.lower())+'.webp';image.save(out/filename,quality=94)
+  records.append({'file':filename,'mesh':name+part,'atlas':atlas,'rotation':[ax,ay],'unity_source':source_models[name+part],'atlas_source':{'file':('a9f822dacaa592443839c37ae5e5fc4f' if special else '10e9c911cef7265458e29b1a89995565' if bomb else '6809ed30669635b409f67e1f350c4561'),'id':1,'name':atlas}});print(filename,flush=True)
+if only:
+ records=[r for r in json.loads((out/'sources.json').read_text()) if not r['file'].startswith(only+'-') and r['file']!=only+'.webp']+records
+(out/('pomegranate-sources.json' if special else 'dragonfruit-sources.json' if dragon else 'bomb-sources.json' if bomb else 'sources.json')).write_text(json.dumps(records,ensure_ascii=False,indent=2))
+if special or dragon or bomb:
+ contact=Image.new('RGB',(3*190,3*205),'#30251c');d=ImageDraw.Draw(contact)
+ for i,rec in enumerate(records):
+  im=Image.open(out/rec['file']);im.thumbnail((180,180));contact.paste(im,(i%3*190,i//3*205),im);d.text((i%3*190,i//3*205+183),rec['file'],fill='white')
+ contact.save(src/('rendered-pomegranate.jpg' if special else 'rendered-dragonfruit.jpg' if dragon else 'rendered-bomb.jpg'));sys.exit(0)
+contact=Image.new('RGB',(len(names)*170,3*190),'#30251c');d=ImageDraw.Draw(contact)
 for j,part in enumerate(['','-half1','-half2']):
  for i,slug in enumerate(names):
   im=Image.open(out/(slug+part+'.webp'));im.thumbnail((160,160));contact.paste(im,(i*170+5,j*190),im);d.text((i*170+5,j*190+163),slug+part,fill='white')

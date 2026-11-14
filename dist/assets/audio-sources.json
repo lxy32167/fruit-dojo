@@ -52,5 +52,59 @@
     "name": "UICombo3Fruit",
     "source_file": "7739a71085dd4824b8e95cc21f936b35",
     "id": 1
+  },
+  {
+    "file": "life.wav",
+    "name": "UIExtraLife",
+    "source_file": "sharedassets3.assets",
+    "id": 32
+  },
+  {
+    "file": "dragon.wav",
+    "name": "FruitImpactDragonfruit",
+    "source_file": "ada08c7a4242f1848a577532254d0b81",
+    "id": 1
+  },
+  {
+    "file": "pome3.wav",
+    "name": "PomeSlice03",
+    "source_file": "d6083f243b264a344bbfd56397328acd",
+    "id": 1
+  },
+  {
+    "file": "start.wav",
+    "name": "UIGameStart",
+    "source_file": "sharedassets9.assets",
+    "id": 163
+  },
+  {
+    "file": "pome2.wav",
+    "name": "PomeSlice02",
+    "source_file": "473466c63fe13d34ea8234b7b91a5348",
+    "id": 1
+  },
+  {
+    "file": "pome1.wav",
+    "name": "PomeSlice01",
+    "source_file": "9e2cde463246e024e8c7cdb80778aeae",
+    "id": 1
+  },
+  {
+    "file": "miss.wav",
+    "name": "UINegative",
+    "source_file": "c1b32bc1b3434484cb055a537ca7b43c",
+    "id": 1
+  },
+  {
+    "file": "critical.wav",
+    "name": "UICritical",
+    "source_file": "a13c97561da56a442907fe580e20f785",
+    "id": 1
+  },
+  {
+    "file": "pomeBurst.wav",
+    "name": "PomeBurst",
+    "source_file": "5493b679dd5c0314da6d6a8f45df7f88",
+    "id": 1
   }
 ]

@@ -1,0 +1,173 @@
+[
+  {
+    "file": "pomegranate.webp",
+    "mesh": "pomegranate_single",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "pomegranate_single",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_1.webp",
+    "mesh": "pomegranate_p_piece_1",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_1",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_2.webp",
+    "mesh": "pomegranate_p_piece_2",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_2",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 4
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_3.webp",
+    "mesh": "pomegranate_p_piece_3",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_3",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 5
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_4.webp",
+    "mesh": "pomegranate_p_piece_4",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_4",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 6
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_5.webp",
+    "mesh": "pomegranate_p_piece_5",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_5",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 7
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_6.webp",
+    "mesh": "pomegranate_p_piece_6",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_6",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 8
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_7.webp",
+    "mesh": "pomegranate_p_piece_7",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_7",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 9
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  },
+  {
+    "file": "pomegranate-p_piece_8.webp",
+    "mesh": "pomegranate_p_piece_8",
+    "atlas": "Pomegranate",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "pomegranate_p_piece_8",
+      "file": "02f734fe47aa3e34ab3b31343d7f6e34",
+      "id": 10
+    },
+    "atlas_source": {
+      "file": "a9f822dacaa592443839c37ae5e5fc4f",
+      "id": 1,
+      "name": "Pomegranate"
+    }
+  }
+]

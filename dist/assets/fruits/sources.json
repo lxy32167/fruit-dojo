@@ -340,5 +340,575 @@
       "id": 1,
       "name": "FruitAtlas"
     }
+  },
+  {
+    "file": "mango.webp",
+    "mesh": "MangoWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "MangoWhole",
+      "file": "bd01c8bc4565e50489dfe16b6ae3822c",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "mango-half1.webp",
+    "mesh": "MangoHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "MangoHalf1",
+      "file": "bd01c8bc4565e50489dfe16b6ae3822c",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "mango-half2.webp",
+    "mesh": "MangoHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "MangoHalf2",
+      "file": "bd01c8bc4565e50489dfe16b6ae3822c",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "pineapple.webp",
+    "mesh": "PineappleWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "PineappleWhole",
+      "file": "915551e0d5fb6964aa29fc3c64c16fb8",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "pineapple-half1.webp",
+    "mesh": "PineappleHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "PineappleHalf1",
+      "file": "915551e0d5fb6964aa29fc3c64c16fb8",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "pineapple-half2.webp",
+    "mesh": "PineappleHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "PineappleHalf2",
+      "file": "915551e0d5fb6964aa29fc3c64c16fb8",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "coconut.webp",
+    "mesh": "CoconutWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "CoconutWhole",
+      "file": "5cb7ac288385910439f70d034610e601",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "coconut-half1.webp",
+    "mesh": "CoconutHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "CoconutHalf1",
+      "file": "5cb7ac288385910439f70d034610e601",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "coconut-half2.webp",
+    "mesh": "CoconutHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "CoconutHalf2",
+      "file": "5cb7ac288385910439f70d034610e601",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "greenapple.webp",
+    "mesh": "AppleGreenWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "AppleGreenWhole",
+      "file": "af0e1bb41235b6e4797004127c01739f",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "greenapple-half1.webp",
+    "mesh": "AppleGreenHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "AppleGreenHalf1",
+      "file": "af0e1bb41235b6e4797004127c01739f",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "greenapple-half2.webp",
+    "mesh": "AppleGreenHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "AppleGreenHalf2",
+      "file": "af0e1bb41235b6e4797004127c01739f",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "banana.webp",
+    "mesh": "BananaWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "BananaWhole",
+      "file": "6d6c69987ee7a754985b1583fa856304",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "banana-half1.webp",
+    "mesh": "BananaHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "BananaHalf1",
+      "file": "6d6c69987ee7a754985b1583fa856304",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "banana-half2.webp",
+    "mesh": "BananaHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "BananaHalf2",
+      "file": "6d6c69987ee7a754985b1583fa856304",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "lime.webp",
+    "mesh": "LimeWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "LimeWhole",
+      "file": "aafe936c2f0889140b4f631c611bb101",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "lime-half1.webp",
+    "mesh": "LimeHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "LimeHalf1",
+      "file": "aafe936c2f0889140b4f631c611bb101",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "lime-half2.webp",
+    "mesh": "LimeHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "LimeHalf2",
+      "file": "aafe936c2f0889140b4f631c611bb101",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "plum.webp",
+    "mesh": "PlumWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "PlumWhole",
+      "file": "160e8d47efa9e3240bd85f25e959ffde",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "plum-half1.webp",
+    "mesh": "PlumHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "PlumHalf1",
+      "file": "160e8d47efa9e3240bd85f25e959ffde",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "plum-half2.webp",
+    "mesh": "PlumHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "PlumHalf2",
+      "file": "160e8d47efa9e3240bd85f25e959ffde",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "pear.webp",
+    "mesh": "PearWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "PearWhole",
+      "file": "0912e0e38c1d6e5429ae45b41a12ec5f",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "pear-half1.webp",
+    "mesh": "PearHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "PearHalf1",
+      "file": "0912e0e38c1d6e5429ae45b41a12ec5f",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "pear-half2.webp",
+    "mesh": "PearHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "PearHalf2",
+      "file": "0912e0e38c1d6e5429ae45b41a12ec5f",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "passionfruit.webp",
+    "mesh": "PassionfruitWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "PassionfruitWhole",
+      "file": "e1a81e8ff6a854745b9834ab87e1bb0e",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "passionfruit-half1.webp",
+    "mesh": "PassionfruitHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "PassionfruitHalf1",
+      "file": "e1a81e8ff6a854745b9834ab87e1bb0e",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "passionfruit-half2.webp",
+    "mesh": "PassionfruitHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "PassionfruitHalf2",
+      "file": "e1a81e8ff6a854745b9834ab87e1bb0e",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "strawberry.webp",
+    "mesh": "StrawberryWhole",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "StrawberryWhole",
+      "file": "5f7d9209615dcc24dac2d577ed5c7943",
+      "id": 3
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "strawberry-half1.webp",
+    "mesh": "StrawberryHalf1",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      0.3,
+      -2.25
+    ],
+    "unity_source": {
+      "name": "StrawberryHalf1",
+      "file": "5f7d9209615dcc24dac2d577ed5c7943",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
+  },
+  {
+    "file": "strawberry-half2.webp",
+    "mesh": "StrawberryHalf2",
+    "atlas": "FruitAtlas",
+    "rotation": [
+      -0.3,
+      -0.9
+    ],
+    "unity_source": {
+      "name": "StrawberryHalf2",
+      "file": "5f7d9209615dcc24dac2d577ed5c7943",
+      "id": 2
+    },
+    "atlas_source": {
+      "file": "6809ed30669635b409f67e1f350c4561",
+      "id": 1,
+      "name": "FruitAtlas"
+    }
   }
 ]

@@ -1,0 +1,21 @@
+[
+  {
+    "file": "bomb.webp",
+    "mesh": "bomb",
+    "atlas": "BombRedCross",
+    "rotation": [
+      -0.25,
+      0.65
+    ],
+    "unity_source": {
+      "name": "bomb",
+      "file": "95f200a5f82e7b34c8896f50ecc85d45",
+      "id": 1
+    },
+    "atlas_source": {
+      "file": "10e9c911cef7265458e29b1a89995565",
+      "id": 1,
+      "name": "BombRedCross"
+    }
+  }
+]

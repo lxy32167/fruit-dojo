@@ -1,6 +1,8 @@
-const CACHE='fruit-dojo-v5';
+const CACHE='fruit-dojo-v6';
 const CORE=['./','./index.html','./styles.css','./game.js','./icon.svg','./manifest.webmanifest','./assets/background.webp','./assets/splats.webp','./assets/slice.wav','./assets/bomb.wav','./assets/combo.wav','./assets/launch.wav','./assets/swipe1.wav','./assets/swipe2.wav','./assets/swipe3.wav','./assets/crunch.wav','./assets/juicy.wav'];
-CORE.push(...['watermelon','orange','apple','kiwi','lemon','peach'].flatMap(name=>['','-half1','-half2'].map(part=>`./assets/fruits/${name}${part}.webp`)));
+CORE.push(...["watermelon", "orange", "apple", "kiwi", "lemon", "peach", "mango", "pineapple", "coconut", "strawberry", "greenapple", "banana", "lime", "plum", "pear", "passionfruit", "dragonfruit"].flatMap(name=>['','-half1','-half2'].map(part=>`./assets/fruits/${name}${part}.webp`)));
+CORE.push('./assets/fruits/bomb.webp','./assets/fruits/pomegranate.webp',...Array.from({length:8},(_,i)=>`./assets/fruits/pomegranate-p_piece_${i+1}.webp`));
+CORE.push(...['start','miss','life','critical','pome1','pome2','pome3','pomeBurst','dragon'].map(name=>`./assets/${name}.wav`));
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting();});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('fruit-dojo-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;event.respondWith(fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));}return response;}).catch(()=>caches.match(event.request)));});
