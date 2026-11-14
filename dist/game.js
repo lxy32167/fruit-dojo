@@ -18,6 +18,19 @@ const types = [
  { name: '柠檬', color: '#f2dc47', rind: '#d9ac22', light: '#fff28d', flesh: '#f9df63', radius: 35 },
  { name: '桃子', color: '#f5a580', rind: '#e97b6b', light: '#ffdea0', flesh: '#ffd49a', radius: 39 }
 ];
+const fruitSprites = new Map();
+const fruitNames = ['watermelon','orange','apple','kiwi','lemon','peach'];
+let fruitsReady = false, fruitsLoading = false;
+async function loadFruitSprites() {
+ if(fruitsLoading)return; fruitsLoading=true; $('start').disabled=true; $('start').firstElementChild.textContent='水果准备中…';
+ try {
+  await Promise.all(fruitNames.flatMap(name=>['','-half1','-half2'].map(part=>new Promise((resolve,reject)=>{
+   const key=name+part, image=new Image();image.onload=()=>{fruitSprites.set(key,image);resolve();};image.onerror=reject;image.src=`assets/fruits/${key}.webp`;
+  }))));
+  fruitsReady=true;$('start').firstElementChild.textContent='开始切水果';
+ } catch { $('start').firstElementChild.textContent='重试加载水果';toast('水果素材加载失败，请点击重试'); }
+ finally {fruitsLoading=false;$('start').disabled=false;}
+}
 const splatImages = new Map();
 const splatAtlas = new Image();
 splatAtlas.onload = () => {
@@ -41,12 +54,14 @@ function sample(name,volume=0.4) {
  const buffer=soundBuffers.get(name);if(!buffer)return false;
  const source=audioCtx.createBufferSource(),gain=audioCtx.createGain();source.buffer=buffer;gain.gain.value=volume;source.connect(gain);gain.connect(audioCtx.destination);source.start();return true;
 }
+function gameplayScale() { return W/H < 1.05 ? 1.55 : 1.3; }
 function resize() {
+ const oldScale = gameplayScale();
  const oldH = H, r = canvas.getBoundingClientRect();
  W = 1000; H = W * r.height / r.width;
  const dpr = Math.min(devicePixelRatio || 1, 2);
  canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
- for (const f of [...fruits, ...pieces]) f.y += H - oldH;
+ for (const f of [...fruits, ...pieces]) { f.y += H - oldH; f.r *= gameplayScale()/oldScale; }
  trails.clear(); strokes.clear();
  if (state === 'playing') pause();
 }
@@ -76,6 +91,7 @@ function updateHud() {
 }
 function saveBest() { if(score>(best[mode]||0)) { best[mode]=score; storage.set('best',best); } }
 function start() {
+ if(!fruitsReady){loadFruitSprites();return;}
  unlockAudio(); mode=document.querySelector('.mode.active').dataset.mode; state='playing'; score=0; misses=0; elapsed=0; spawnIn=.65;
  fruits=[];pieces=[];particles=[];splats=[];labels=[];trails.clear();strokes.clear();cutCount=0;topCombo=0;shake=0;flash=0;endDelay=-1;
  $('home').hidden=true; $('footer').hidden=true; $('overlay').hidden=true; $('hud').hidden=false; $('game-hint').hidden=false;document.body.classList.add('playing');
@@ -104,10 +120,10 @@ function spawnWave() {
  for(let i=0;i<count;i++) {
   const type=choose(types), x=clamp(center+(i-(count-1)/2)*rnd(75,100),100,900);
   const vy=-Math.sqrt(2*gravity*(H+60-apex))+rnd(-35,30);
-  fruits.push({x,y:H+80+i*18,vx:(500-x)*rnd(.07,.22)+rnd(-45,45),vy,g:gravity,r:type.radius,angle:rnd(0,TAU),spin:rnd(-2,2),type,bomb:false,entered:false});
+  fruits.push({x,y:H+80+i*18,vx:(500-x)*rnd(.07,.22)+rnd(-45,45),vy,g:gravity,r:type.radius*gameplayScale(),angle:rnd(0,TAU),spin:rnd(-2,2),type,bomb:false,entered:false});
  }
  if(mode==='classic' && elapsed>4 && Math.random()<Math.min(.65,.28+elapsed/160)) {
-  const x=rnd(130,870);fruits.push({x,y:H+110,vx:(500-x)*.15,vy:-Math.sqrt(2*gravity*(H+100-apex*.85)),g:gravity,r:38,angle:0,spin:rnd(-1,1),bomb:true,entered:false});
+  const x=rnd(130,870);fruits.push({x,y:H+110,vx:(500-x)*.15,vy:-Math.sqrt(2*gravity*(H+100-apex*.85)),g:gravity,r:38*gameplayScale(),angle:0,spin:rnd(-1,1),bomb:true,entered:false});
  }
  spawnIn=Math.max(.95,2.15-elapsed*.006)+rnd(0,.35);if(!sample('launch',.13))tone(190,.17,'sine',.025,350);
 }
@@ -150,29 +166,15 @@ canvas.addEventListener('pointermove',e=>{
 });
 function release(e){const s=strokes.get(e.pointerId);if(s&&state==='playing')finishStroke(s);strokes.delete(e.pointerId);if(canvas.hasPointerCapture(e.pointerId))canvas.releasePointerCapture(e.pointerId);}
 canvas.addEventListener('pointerup',release);canvas.addEventListener('pointercancel',release);canvas.addEventListener('lostpointercapture',release);canvas.addEventListener('contextmenu',e=>e.preventDefault());
-function fruitShape(type,r) {
- ctx.beginPath();
- if(type===types[4])ctx.ellipse(0,0,r*1.14,r*.84,0,0,TAU);
- else if(type===types[2]||type===types[5]){ctx.moveTo(0,-r*.78);ctx.bezierCurveTo(r*.8,-r*1.25,r*1.24,-r*.38,r*.78,r*.5);ctx.bezierCurveTo(r*.5,r*1.1,r*.2,r*.95,0,r*.87);ctx.bezierCurveTo(-r*.25,r,-r*.57,r,-r*.83,r*.45);ctx.bezierCurveTo(-r*1.24,-r*.4,-r*.65,-r*1.25,0,-r*.78);}
- else ctx.arc(0,0,r,0,TAU);
-}
 function drawFruit(f, half=false) {
- const r=f.r,type=f.type;ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.angle);
+ const r=f.r;ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.angle);
  if(f.bomb){drawBomb(r);ctx.restore();return;}
- ctx.shadowColor='#09070577';ctx.shadowBlur=12;ctx.shadowOffsetY=9;
- fruitShape(type,r);const g=ctx.createRadialGradient(-r*.36,-r*.43,0,r*.15,r*.2,r*1.3);g.addColorStop(0,type.light);g.addColorStop(.55,type.rind);g.addColorStop(1,'#392514');ctx.fillStyle=g;ctx.fill();ctx.shadowBlur=0;ctx.shadowOffsetY=0;
- if(half){
-  // Each half keeps the silhouette and presents its cut face along the actual swipe.
-  ctx.rotate(f.cut);ctx.beginPath();ctx.rect(-r*1.5,f.side<0?-r*1.5:0,r*3,r*1.5);ctx.clip();
-  fruitShape(type,r);ctx.fillStyle=type.rind;ctx.fill();ctx.scale(.88,.88);fruitShape(type,r);ctx.fillStyle=type===types[0]?'#e9e0a1':type.light;ctx.fill();ctx.scale(.90,.90);fruitShape(type,r);ctx.fillStyle=type.flesh;ctx.fill();
-  if(type===types[1]||type===types[4]){ctx.strokeStyle='#fff6b68a';ctx.lineWidth=2;for(let i=0;i<9;i++){ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(Math.cos(i*TAU/9)*r,Math.sin(i*TAU/9)*r);ctx.stroke();}ctx.fillStyle='#fff2bc';ctx.beginPath();ctx.arc(0,0,5,0,TAU);ctx.fill();}
-  else if(type===types[0]||type===types[3]){ctx.fillStyle=type===types[3]?'#ece9b7':'#ef8871';ctx.beginPath();ctx.ellipse(0,0,r*.2,r*.29,0,0,TAU);ctx.fill();ctx.fillStyle='#372718';for(let i=0;i<12;i++){const a=i*TAU/12;ctx.beginPath();ctx.ellipse(Math.cos(a)*r*.6,Math.sin(a)*r*.6,2,3.8,a,0,TAU);ctx.fill();}}
-  else {ctx.fillStyle='#c9a175';ctx.beginPath();ctx.ellipse(0,0,7,13,0,0,TAU);ctx.fill();}
- } else {
-  if(type===types[0]){ctx.save();fruitShape(type,r);ctx.clip();ctx.strokeStyle='#214f2d88';ctx.lineWidth=7;for(let i=-2;i<=2;i++){ctx.beginPath();ctx.moveTo(i*18,-r);ctx.bezierCurveTo(i*22-13,-r*.3,i*22+12,r*.35,i*17,r);ctx.stroke();}ctx.restore();}
-  else if(type===types[1]||type===types[3]||type===types[4]){ctx.fillStyle=type===types[3]?'#4c351c66':'#fff6bd35';for(let i=0;i<48;i++){const a=i*2.399,rad=Math.sqrt(i/48)*r*.85;ctx.beginPath();ctx.arc(Math.cos(a)*rad,Math.sin(a)*rad,1,0,TAU);ctx.fill();}}
-  if(type===types[2]||type===types[5]||type===types[1]){ctx.strokeStyle='#6e4826';ctx.lineWidth=4;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(0,-r*.76);ctx.quadraticCurveTo(-4,-r*.98,5,-r*1.1);ctx.stroke();ctx.fillStyle='#80a646';ctx.beginPath();ctx.ellipse(13,-r*.95,14,6,-.45,0,TAU);ctx.fill();}
-  ctx.fillStyle='#fff6d629';ctx.beginPath();ctx.ellipse(-r*.34,-r*.4,r*.16,r*.28,.5,0,TAU);ctx.fill();
+ const key=fruitNames[types.indexOf(f.type)]+(half?(f.side<0?'-half1':'-half2'):'');
+ const image=fruitSprites.get(key);
+ if(image){
+  if(half)ctx.rotate(f.cut);
+  ctx.shadowColor='#09070588';ctx.shadowBlur=10;ctx.shadowOffsetY=8;
+  ctx.drawImage(image,-r*1.13,-r*1.13,r*2.26,r*2.26);
  }
  ctx.restore();
 }
@@ -222,7 +224,7 @@ function render() {
  if(state==='home'||(state==='help'&&dialogReturn==='home')){renderHome();ctx.restore();return;}
  for(const s of splats){ctx.save();ctx.translate(s.x,s.y);ctx.rotate(s.angle);ctx.globalAlpha=Math.min(.18,s.life*.05);ctx.fillStyle=s.color;ctx.beginPath();for(let i=0;i<24;i++){const a=i*TAU/24,r=s.r*(i%2?1:.42);ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);}ctx.closePath();if(splatImages.has(s.color))ctx.drawImage(splatImages.get(s.color),-s.r*1.5,-s.r*1.5,s.r*3,s.r*3);else ctx.fill();ctx.restore();}
  for(const f of fruits)if(!f.dead)drawFruit(f);
- for(const p of pieces){ctx.save();ctx.globalAlpha=Math.min(1,p.life*2);ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.rotate(p.cut);ctx.beginPath();ctx.rect(-p.r*1.5,p.side<0?-p.r*1.5:0,p.r*3,p.r*1.5);ctx.clip();ctx.rotate(-p.cut);ctx.rotate(-p.angle);ctx.translate(-p.x,-p.y);drawFruit(p,true);ctx.restore();}
+ for(const p of pieces){ctx.save();ctx.globalAlpha=Math.min(1,p.life*2);drawFruit(p,true);ctx.restore();}
  for(const p of particles){ctx.globalAlpha=clamp(p.life/p.max,0,1);ctx.fillStyle=p.color;ctx.beginPath();ctx.ellipse(p.x,p.y,p.r,p.r*.7,Math.atan2(p.vy,p.vx),0,TAU);ctx.fill();}ctx.globalAlpha=1;
  for(const trail of trails.values()){if(trail.length<2)continue;ctx.lineCap='round';ctx.lineJoin='round';ctx.shadowColor='#9eeaff';ctx.shadowBlur=14;for(let i=1;i<trail.length;i++){const a=trail[i-1],b=trail[i],alpha=clamp(1-(clock-b.t)/.16,0,1);ctx.strokeStyle=`rgba(164,232,255,${alpha*.3})`;ctx.lineWidth=13*alpha;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.strokeStyle=`rgba(255,255,239,${alpha})`;ctx.lineWidth=4*alpha;ctx.stroke();}ctx.shadowBlur=0;}
  for(const l of labels){ctx.globalAlpha=Math.min(1,l.life*3);ctx.font=`bold ${l.size}px -apple-system, sans-serif`;ctx.textAlign='center';ctx.fillStyle=l.color;ctx.shadowColor='#160c08';ctx.shadowBlur=7;ctx.fillText(l.text,l.x,l.y);ctx.shadowBlur=0;}ctx.globalAlpha=1;
@@ -237,5 +239,5 @@ $('fullscreen').addEventListener('click',async()=>{try{if(document.fullscreenEle
 $('help').addEventListener('click',()=>{dialogReturn=state;if(state==='playing')pause();state='help';openDialog('HOW TO PLAY','指尖，就是刀锋','<p>按住鼠标拖动，或用手指划过水果。<br>一刀连切 3 个及以上，获得额外加分。<br><br><b>经典模式</b>：漏掉三颗水果或切中炸弹，挑战结束。<br><b>禅模式</b>：90 秒内尽情切，没有炸弹，不计漏果。<br><br>Esc / P 暂停 · 切换页面自动暂停</p>','明白了 ↗',()=>{state=dialogReturn;closeDialog();},'回到道场',home);});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='playing')pause();});window.addEventListener('blur',()=>{if(state==='playing')pause();});
 document.addEventListener('keydown',e=>{if(e.code==='Escape'||e.code==='KeyP'){if(state==='playing')pause();else if(state==='paused')resume();else if(state==='help'){state=dialogReturn;closeDialog();}}if(e.key==='Tab'&&!$('overlay').hidden){const buttons=[$('dialog-primary'),$('dialog-secondary')];if(e.shiftKey&&document.activeElement===buttons[0]){e.preventDefault();buttons[1].focus();}else if(!e.shiftKey&&document.activeElement===buttons[1]){e.preventDefault();buttons[0].focus();}}});
-syncSound();updateHud();requestAnimationFrame(frame);
+syncSound();updateHud();loadFruitSprites();requestAnimationFrame(frame);
 if('serviceWorker' in navigator && window.isSecureContext)navigator.serviceWorker.register('./sw.js').catch(()=>{});
